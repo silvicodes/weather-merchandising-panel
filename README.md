@@ -19,8 +19,6 @@ View the live demo on Netlify `http://weather-merchandising-panel.netlify.app`
 
 ## Preview
 
-## Preview
-
 ### Desktop
 
 ![Weather panel desktop](assets/weather-desktop.png)
