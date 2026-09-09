@@ -306,23 +306,63 @@ function renderWeather(data, location) {
 }
 
 function merchandisingMessage(current, daily) {
-  const rainyCodes = new Set([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99]);
-  const snowCodes = new Set([71, 73, 75, 77, 85, 86]);
-  const rainChanceToday = Number(daily.precipitation_probability_max?.[0] || 0);
+  const rainyCodes = new Set([
+    51, 53, 55, 56, 57,
+    61, 63, 65, 66, 67,
+    80, 81, 82,
+    95, 96, 99
+  ]);
 
-  if (rainyCodes.has(current.weather_code) || current.precipitation > 0 || rainChanceToday >= 60) {
+  const snowCodes = new Set([
+    71, 73, 75, 77, 85, 86
+  ]);
+
+  const fogCodes = new Set([45, 48]);
+  const clearCodes = new Set([0, 1]);
+
+  const rainChanceToday = Number(
+    daily.precipitation_probability_max?.[0] || 0
+  );
+
+  // Rain or a high chance of rain
+  if (
+    rainyCodes.has(current.weather_code) ||
+    current.precipitation > 0 ||
+    rainChanceToday >= 60
+  ) {
     return 'Waterproofs are 20% off this week.';
   }
-  if (snowCodes.has(current.weather_code) || current.apparent_temperature <= 7) {
+
+  // Snow or cold conditions
+  if (
+    snowCodes.has(current.weather_code) ||
+    current.apparent_temperature <= 7
+  ) {
     return 'Time for knitwear and insulated layers.';
   }
+
+  // Strong wind
   if (current.wind_speed_10m >= 30) {
-    return 'Windproof layers made for blustery days.';
+    return 'Windproof layers for blustery days.';
   }
+
+  // Warm conditions
   if (current.temperature_2m >= 18) {
     return 'Keep it light with breathable outer layers.';
   }
-  return 'Layer up for changeable weather.';
+
+  // Foggy conditions
+  if (fogCodes.has(current.weather_code)) {
+    return 'A practical outer layer for cool, misty conditions.';
+  }
+
+  // Clear but mild conditions
+  if (clearCodes.has(current.weather_code)) {
+    return 'Clear skies, a lightweight jacket should do.';
+  }
+
+  // Cloudy / mild conditions
+  return 'A lightweight jacket is a smart layer today.';
 }
 
 function renderForecast(daily) {
