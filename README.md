@@ -14,6 +14,9 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`. VS Code Live Server works too.
 
+## Live demo
+View the live demo on Netlify `http://weather-merchandising-panel.netlify.app`
+
 ## Included
 
 * UK town/city search with selectable Open-Meteo geocoding results.
