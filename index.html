@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A responsive weather merchandising panel built with Open-Meteo." />
+  <title>Weather Merchandising Panel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="weather-panel" aria-labelledby="weather-title">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Weather edit</p>
+          <h1 id="weather-title">Dress for the forecast.</h1>
+          <p class="intro">Search a UK town or city for current conditions and the next three days.</p>
+        </div>
+
+        <div class="search-wrap">
+          <label for="location-search">Location</label>
+          <div class="search-control">
+            <input
+              id="location-search"
+              name="location"
+              type="search"
+              placeholder="Try Manchester"
+              autocomplete="off"
+              aria-autocomplete="list"
+              aria-controls="search-results"
+              aria-expanded="false"
+            />
+            <button id="search-button" type="button">Search</button>
+          </div>
+          <div id="search-results" class="search-results" role="listbox" hidden></div>
+          <p id="search-status" class="status-text" aria-live="polite"></p>
+        </div>
+      </header>
+
+      <div id="panel-content" class="panel-content" aria-live="polite" aria-busy="true">
+        <div id="loading-state" class="state-card loading-state">
+          <span class="spinner" aria-hidden="true"></span>
+          <div>
+            <strong>Checking the forecast…</strong>
+            <p>Open-Meteo can occasionally take a moment.</p>
+          </div>
+        </div>
+
+        <div id="error-state" class="state-card error-state" hidden>
+          <div>
+            <strong>We couldn’t load the weather.</strong>
+            <p id="error-message">Please try again.</p>
+          </div>
+          <button id="retry-button" class="secondary-button" type="button">Try again</button>
+        </div>
+
+        <div id="weather-content" hidden>
+          <div class="location-row">
+            <div>
+              <p class="label">Now in</p>
+              <h2 id="location-name">Manchester</h2>
+            </div>
+            <p id="updated-time" class="updated-time"></p>
+          </div>
+
+          <div class="current-grid">
+            <article class="current-card">
+              <div class="condition-heading">
+                <div id="current-icon" class="weather-icon" aria-hidden="true">☁</div>
+                <div>
+                  <p id="current-condition" class="condition-name">Cloudy</p>
+                  <div class="temperature"><span id="current-temp">12</span><span>°C</span></div>
+                </div>
+              </div>
+
+              <dl class="current-details">
+                <div>
+                  <dt>Feels like</dt>
+                  <dd><span id="feels-like">10</span>°C</dd>
+                </div>
+                <div>
+                  <dt>Wind</dt>
+                  <dd><span id="wind-speed">18</span> km/h</dd>
+                </div>
+              </dl>
+            </article>
+
+            <aside id="merch-card" class="merch-card">
+              <p class="label">Weather pick</p>
+              <p id="merch-message" class="merch-message">Layer up for changeable weather.</p>
+            </aside>
+          </div>
+
+          <div class="outlook-section">
+            <div class="section-heading">
+              <p class="label">Next 3 days</p>
+              <p class="forecast-note">High / low · rain chance</p>
+            </div>
+            <div id="forecast-grid" class="forecast-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="panel-footer">
+        <span>Weather data by Open-Meteo</span>
+      </footer>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
