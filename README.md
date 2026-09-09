@@ -17,6 +17,19 @@ Then open `http://localhost:8080`. VS Code Live Server works too.
 ## Live demo
 View the live demo on Netlify `http://weather-merchandising-panel.netlify.app`
 
+## Preview
+
+## Preview
+
+### Desktop
+
+![Weather panel desktop](assets/weather-desktop.png)
+![Weather panel desktop](assets/weather-desktop-1.png)
+
+### Mobile
+
+![Weather panel mobile](assets/weather-mobile.jpg)
+
 ## Included
 
 * UK town/city search with selectable Open-Meteo geocoding results.
